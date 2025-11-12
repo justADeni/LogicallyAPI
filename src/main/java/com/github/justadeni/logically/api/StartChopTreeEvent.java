@@ -80,6 +80,9 @@ public final class StartChopTreeEvent extends Event implements Cancellable {
     /** The lowest average location of the tree. */
     private final Location root;
 
+    /** The block that caused the tree to fall */
+    private final Block origin;
+
     /** The world in which the chop occurs. */
     private final World world;
 
@@ -105,7 +108,7 @@ public final class StartChopTreeEvent extends Event implements Cancellable {
      * @param logMaterials    the log materials in this tree
      * @param leavesMaterials the leaf materials in this tree
      */
-    public StartChopTreeEvent(Set<Block> logs, Set<Block> leaves, Vector3f axis, Player player, Location root, World world, int height, Set<Material> logMaterials, Set<Material> leavesMaterials) {
+    public StartChopTreeEvent(Set<Block> logs, Set<Block> leaves, Vector3f axis, Player player, Location root, Block origin, World world, int height, Set<Material> logMaterials, Set<Material> leavesMaterials) {
         super(true);
         this.logs = ConcurrentHashMap.newKeySet();
         this.logs.addAll(logs);
@@ -114,6 +117,7 @@ public final class StartChopTreeEvent extends Event implements Cancellable {
         this.axis = new Vector3f(axis);
         this.player = player;
         this.root = new Location(root.getWorld(), root.x(), root.y(), root.z());
+        this.origin = origin;
         this.world = world;
         this.height = height;
         this.logMaterials = Set.copyOf(logMaterials);
@@ -144,7 +148,7 @@ public final class StartChopTreeEvent extends Event implements Cancellable {
      * Gets the normalized fall axis of the tree.
      * Modifying the Vector3f is allowed.
      *
-     * @return the axis vector
+     * @return the axis {@link Vector3f}
      */
     public Vector3f getAxis() {
         return axis;
@@ -153,7 +157,7 @@ public final class StartChopTreeEvent extends Event implements Cancellable {
     /**
      * Gets the player who started chopping the tree.
      *
-     * @return the player
+     * @return the {@link Player}
      */
     public Player getPlayer() {
         return player;
@@ -162,16 +166,25 @@ public final class StartChopTreeEvent extends Event implements Cancellable {
     /**
      * Gets the pivot location for tree fall.
      *
-     * @return the root location
+     * @return the root {@link Location}
      */
     public Location getRoot() {
         return root;
     }
 
     /**
+     * Gets the broken block that caused the tree to fall.
+     *
+     * @return the origin {@link Block}
+     */
+    public Block getOrigin() {
+        return origin;
+    }
+
+    /**
      * Gets the world where the event occurred.
      *
-     * @return the world
+     * @return the {@link World}
      */
     public World getWorld() {
         return world;
