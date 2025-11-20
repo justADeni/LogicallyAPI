@@ -1,6 +1,6 @@
 ## Import
 
-Current Tag: ![Release](https://jitpack.io/v/justADeni/LogicallyAPI.svg?style=flat-square)
+[![Tag](https://jitpack.io/v/justADeni/LogicallyAPI.svg?style=flat-square)](https://jitpack.io/#justADeni/LogicallyAPI)
 
 ### Gradle
 
