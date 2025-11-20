@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.justadeni"
-version = "1.9.2"
+version = "1.15.4"
 description = "Tree cutter plugin with physics."
 
 val javaVersion = 21
